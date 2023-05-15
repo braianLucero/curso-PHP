@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if(isset($_SESSION['email']) != 'brasanluc123@gmail.com' ){
+    header('location:loguin.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

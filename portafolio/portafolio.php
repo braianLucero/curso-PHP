@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio</title>
-</head>
-<body>
-    
-<a href="index.php"> Inicio</a>
-<a href="portafolio.php"> Portafolio</a>
-<a href="cerrar.php"> Cerrar</a>
-<br/>           
+<?php include('cabecera.php'); ?>
+</br>
+<div class="card">
+    <div class="card-header">
+        Datos del proyecto
+    </div>
+    <div class="card-body">
+    <form action="portafolio.php" method="post">
+        Nombre del proyecto: <input class ="form-control "type="text" name="nombre" id="">
+        </br>
+        Imagen del proyecto: <input class ="form-control " type="file" name="archivo" id="">
+        </br>
+        <input class ="btn btn-success " type="submit" value="Enviar">
+    </form>
+    </div>
 
-hola soy el portafolio
+</div>
 
-</body>
-</html>
+
+<?php include('pie.php'); ?>
