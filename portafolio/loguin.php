@@ -7,33 +7,38 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
-<!-- <style>
+<style>
         body {
-            background-image: url('fondoBorroso.jpg');
+            background-image: url('fondo.avif');
             background-size: cover;
             background-repeat: no-repeat;
         }
-    </style> -->
+    </style>
 <body>
 <div class="container">
     <div class="row my-5">
         <div class="col-md-4 mx-auto">
-            <form action="submit.php" method="POST" class="p-4 border rounded shadow-lg" style="background-color: rgba(255, 255, 255, 0.7);">
+            <form action="submit.php" method="POST" class="p-4 border rounded shadow-lg" style="background-color: rgba(255, 255, 255, 0.0,5);">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    </svg>
+                    <label for="email" class="form-label">Usuario</label>
+                    <input type="email" class="form-control border" style ="background-color:rgb(255,255,255,0.1);" id="email" name="email" required>
                 </div>
+
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                    <label for="name" class="form-label">Password</label>
+                    <input type="password" class="form-control" style ="background-color:rgb(255,255,255,0.1);" id="password" name="password" required>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Mensaje</label>
-                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                </div>
+
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary border-dark btn-lg" style="background-color: rgba(128, 128, 128, 0.9); opacity: 0.9;">Enviar</button>
+                     <button type="submit" class="btn btn-primary border-dark btn-lg" style="background-color: rgba(128, 128, 128, 0.2); opacity: 0.9;">  Iniciar sesión</button>
                 </div>
+
             </form>
         </div>
     </div>
