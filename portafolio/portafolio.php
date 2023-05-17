@@ -3,10 +3,22 @@
 
 <?php
 if($_POST){
-// print_r($_POST); 
+    // print_r($_POST); 
 $nombre = $_POST["nombre"];
+$descripcion = $_POST['descripcion'];
+
+$fecha= new DateTime();
+
+$img= $fecha->getTimestamp()."_".$_FILES['archivo']['name'];
+
+$imagen_temporal = $_FILES['archivo']['tmp_name'];
+
+move_uploaded_file($imagen_temporal,"imagenes/".$img);
+
+
+
 $objConexion = new conexion();
-$sql = "INSERT INTO `proyectos` (`id`, `nombre`, `imagen`, `descripcion`) VALUES (NULL, '$nombre', 'imagen.jpg', 'es un proyecto de hace mucho tiempo ')";
+$sql = "INSERT INTO `proyectos` (`id`, `nombre`, `imagen`, `descripcion`) VALUES (NULL, '$nombre', '$img', '$descripcion')";
 $objConexion->ejecutar($sql);
 
 }
@@ -15,13 +27,19 @@ $objConexion->ejecutar($sql);
 if (isset($_GET['borrar'])) {
     $id = $_GET['borrar'];
     $objConexion = new conexion();
-    $sql = 'DELETE FROM `proyectos` WHERE `proyectos`.`id` ='.$id;
-    // $params = array(':id' => $id);
-    $objConexion->ejecutar($sql);
+
+    $imagen=$objConexion->consultar('SELECT imagen FROM `proyectos` WHERE id='.$id);
+
+   unlink("imagenes/".$imagen[0]['imagen']);  
+   $sql = 'DELETE FROM `proyectos` WHERE `proyectos`.`id` ='.$id;
+   $objConexion->ejecutar($sql);
 }
+
 
 $objConexion = new conexion();  
 $proyectos = $objConexion->consultar('SELECT * FROM `proyectos`');
+
+
 ?>
 
 
@@ -40,6 +58,9 @@ $proyectos = $objConexion->consultar('SELECT * FROM `proyectos`');
                     Nombre del proyecto: <input class ="form-control "type="text" name="nombre" id="">
                     </br>
                     Imagen del proyecto: <input class ="form-control " type="file" name="archivo" id="">
+                    </br>
+                    Descripcion:
+                    <textarea class = "form-control"name="descripcion" id="" cols="30" rows="3"></textarea>
                     </br>
                     <input class ="btn btn-success " type="submit" value="Enviar">
                 </form>
@@ -68,7 +89,12 @@ $proyectos = $objConexion->consultar('SELECT * FROM `proyectos`');
                 <tr>
                     <td><?php echo $proyecto['id']; ?></td>
                     <td><?php echo $proyecto['nombre']; ?></td>
-                    <td><?php echo $proyecto['imagen']; ?></td>
+
+                    <td>
+                        <img class="img-fluid w-80 rounded" width="100%" src="imagenes/<?php echo $proyecto['imagen']; ?>" alt=""> 
+                    </td>
+
+
                     <td><?php echo $proyecto['descripcion']; ?></td>
                     <td><a class="btn btn-outline-danger" href="?borrar=<?php echo $proyecto['id']; ?>">Eliminar</a></td>
                 </tr>
