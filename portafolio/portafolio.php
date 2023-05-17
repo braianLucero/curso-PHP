@@ -3,7 +3,7 @@
 
 <?php
 if($_POST){
-print_r($_POST);
+// print_r($_POST); 
 $nombre = $_POST["nombre"];
 $objConexion = new conexion();
 $sql = "INSERT INTO `proyectos` (`id`, `nombre`, `imagen`, `descripcion`) VALUES (NULL, '$nombre', 'imagen.jpg', 'es un proyecto de hace mucho tiempo ')";
@@ -11,17 +11,19 @@ $objConexion->ejecutar($sql);
 
 }
 
-if($_GET){
-    // DELETE FROM `proyectos` WHERE `proyectos`.`id` = 55;
+// Verificar si se ha enviado un parámetro 'borrar' a través de $_GET
+if (isset($_GET['borrar'])) {
+    $id = $_GET['borrar'];
     $objConexion = new conexion();
-    $sql = 'DELETE FROM `proyectos` WHERE `proyectos`.`id` ='.$_GET['borrar'];
+    $sql = 'DELETE FROM `proyectos` WHERE `proyectos`.`id` ='.$id;
+    // $params = array(':id' => $id);
     $objConexion->ejecutar($sql);
 }
 
-$objConexion = new conexion();
-$proyectos = $objConexion->consultar('SELECT * FROM `proyectos` ');
-        // print_r($resultado);
+$objConexion = new conexion();  
+$proyectos = $objConexion->consultar('SELECT * FROM `proyectos`');
 ?>
+
 
 
 </br>
@@ -68,7 +70,7 @@ $proyectos = $objConexion->consultar('SELECT * FROM `proyectos` ');
                     <td><?php echo $proyecto['nombre']; ?></td>
                     <td><?php echo $proyecto['imagen']; ?></td>
                     <td><?php echo $proyecto['descripcion']; ?></td>
-                    <td><a class="btn btn-outline-danger" href="?borrar = <?php echo $proyecto['id']; ?>">Eliminar</a></td>
+                    <td><a class="btn btn-outline-danger" href="?borrar=<?php echo $proyecto['id']; ?>">Eliminar</a></td>
                 </tr>
 
             <?php } ?>
@@ -80,10 +82,5 @@ $proyectos = $objConexion->consultar('SELECT * FROM `proyectos` ');
 </div>
 
 
-
-
-<div class="table-responsive">
-
-</div>
 
 <?php include('pie.php'); ?>
