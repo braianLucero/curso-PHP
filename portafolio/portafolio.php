@@ -2,6 +2,7 @@
 <?php include('conexion.php'); ?>
 
 <?php
+
 if($_POST){
     // print_r($_POST); 
 $nombre = $_POST["nombre"];
@@ -15,11 +16,12 @@ $imagen_temporal = $_FILES['archivo']['tmp_name'];
 
 move_uploaded_file($imagen_temporal,"imagenes/".$img);
 
-
-
 $objConexion = new conexion();
 $sql = "INSERT INTO `proyectos` (`id`, `nombre`, `imagen`, `descripcion`) VALUES (NULL, '$nombre', '$img', '$descripcion')";
 $objConexion->ejecutar($sql);
+
+header("location:portafolio.php");  // redirreccionar la url cuando hace alguna accion (funcion)
+
 
 }
 
@@ -33,6 +35,7 @@ if (isset($_GET['borrar'])) {
    unlink("imagenes/".$imagen[0]['imagen']);  
    $sql = 'DELETE FROM `proyectos` WHERE `proyectos`.`id` ='.$id;
    $objConexion->ejecutar($sql);
+   header("location:portafolio.php");
 }
 
 
@@ -55,9 +58,9 @@ $proyectos = $objConexion->consultar('SELECT * FROM `proyectos`');
                 </div>
                 <div class="card-body">
                 <form action="portafolio.php" method="post" enctype ="multipart/form-data">
-                    Nombre del proyecto: <input class ="form-control "type="text" name="nombre" id="">
+                    Nombre del proyecto: <input required class ="form-control "type="text" name="nombre" id="">
                     </br>
-                    Imagen del proyecto: <input class ="form-control " type="file" name="archivo" id="">
+                    Imagen del proyecto: <input required class ="form-control " type="file" name="archivo" id="">
                     </br>
                     Descripcion:
                     <textarea class = "form-control"name="descripcion" id="" cols="30" rows="3"></textarea>
@@ -84,6 +87,7 @@ $proyectos = $objConexion->consultar('SELECT * FROM `proyectos`');
             </thead>
 
             <tbody>
+                
             <?php foreach($proyectos as $proyecto){ ?>
 
                 <tr>
