@@ -43,23 +43,32 @@ $proyectos = $objConexion->consultar('SELECT * FROM `proyectos`');
 
 ?>
 
+<style>
+        body {
+            background-image: url('fondo.avif');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+
 </br>
 
-<div class="container">
+<div class="container"> 
     <div class="row">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-dark text-white">
+            <div class="card" style="border: 0.1em solid #000;">
+                <div class="card-header bg-dark text-white" >
                     Datos del proyecto
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="background:rgb(0,0,0,0.1);">
                 <form action="portafolio.php" method="post" enctype ="multipart/form-data">
-                    Nombre del proyecto: <input required class ="form-control "type="text" name="nombre" id="">
+                    Nombre del proyecto: <input required class ="form-control " style="background:#e9ecef;" type="text" name="nombre" id="">
                     </br>
-                    Imagen del proyecto: <input required class ="form-control " type="file" name="archivo" id="">
+                    Imagen del proyecto: <input required class ="form-control " style="background:#f1f1f1;" type="file" name="archivo" id="">
                     </br>
                     Descripcion:
-                    <textarea class = "form-control"name="descripcion" id="" cols="30" rows="3"></textarea>
+                    <textarea class = "form-control"name="descripcion" id="" style="background:#e9ecef;" cols="30" rows="3"></textarea>
                     </br>
                     <input class ="btn btn-dark" type="submit" value="Enviar">
                 </form>
